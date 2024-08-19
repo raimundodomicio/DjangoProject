@@ -1,0 +1,158 @@
+************** https://www.youtube.com/watch?v=MsUL3Pgofl4 ************************************
+
+
+***************************** Ambiente python no windows **************************************
+criando ambiente: python -m venv venv  
+Ativando ambiente: venv\Scripts\activate
+
+
+*************************** Tratando erro do Power Shell **************************************
+ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+
+*************************** Ambiente python no Linux ******************************************
+criando ambiente: python3 -m venv venv  
+Ativando ambiente: source venv/bin/activate
+
+
+********************** Instalando o Django no projeto, dentro do ambiente python **************
+pip install django
+
+*************************** Criando um projeto Django, dentro do ambiente python **************
+django-admin startproject setup .
+
+
+********************* Executando o projeto Django, dentro do ambiente python *****************
+python manage.py runserver
+
+************************** Abra o navegador **************************************************
+http://localhost:8000
+
+
+************************** settings.py *******************************************************
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Manaus'
+
+
+*********************** Criando app **********************************************************
+python manage.py startapp tasks
+
+
+************************ Instalando app.py no projeto ****************************************
+setup -> settings.py -> INSTALLED_APS = 
+	'tasks.app.TaskConfig'
+
+*********************** OBS: O Django usa o padrão MTV (Model Templates Views) **************
+Model - Relacionada a base de dados. Possui classes python que representa as as entidades
+Templates - Camada de visualição dos dados ou seja camada de interação com usuário
+Views - camada interface entre Model e Template ou seja diz o que tem que ser feito quando
+ocorrer uma requisição.
+
+******************************* Criando a primeira página no Django **************************
+
+tasks -> views ->
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Olá Mundo Django!!")
+
+
+setup -> urls.py ->
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    -> path('', home),
+]
+
+
+***************************** Criando a camada de templates **********************************
+
+tasks -> (criar diretório) templates -> (criar diretório) tasks
+home.html
+
+Volta na views e:
+tasks -> views ->
+
+from django.http import HttpResponse
+
+def home(request):
+    return render(request, 'task/home.html')
+
+
+
+********************** OBS: O fluxo na aplicação Django ***************************************
+Urls - Define as rotas e qual views serão execultadas. Exemplo: path('', home)
+
+Views - Diz o que tem que ser feito quando executar a views. Exemplo: renderizar - render(request,
+"tasks/home.html")
+
+Templates - Camada de visualização dos dados ou seja camada de interação com usuário
+
+
+**** Model ***
+
+tasks -> model
+
+Todo modelo é uma classe python, que herda de models.
+
+class task(models.Model):
+    title = models.CharField(max_length=100, null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+    deadline = models.DateTimeField(null=False, blank=False)
+    finished_at = models.DateTimeField(null=True)
+
+
+************************ No terminal crie o BD pelo comando ******************************* 
+
+python manage.py migrate  - Cria modelos pré configurados no settings.py
+python manage.py makemigrations - Cria modelos pré configurados no settings.py
+python manage.py migrate - Aplica modelos pré configurados no settings.py
+
+
+************************ SECRET_KEY  *******************************
+SECRET_KEY = 'django-insecure-ifp4k05#9!--wv39qf$t4mo*%qz$!)^c3x1r+u^6mry@w_sql$'
+
+No terminal, instalar a biblioteca decouple: 
+    pip install python-decouple
+Diretório raiz, criar um arquivo:
+ .env
+
+No arquivo settings.py fazer o import:
+    from decouple import config
+
+No arquivo .env, copiar a SECRET_KEY do settings e e colar no arquivo.env: 
+SECRET_KEY = django-insecure-ifp4k05#9!--wv39qf$t4mo*%qz$!)^c3x1r+u^6mry@w_sql$ (sem as aspas simples)
+
+No arquivo settings ficará desta forma: 
+    SECRET_KEY = config("SECRET_KEY")
+
+No arquivo .env, copiar a DEBUG do settings e e colar no arquivo.env: 
+    DEBUG = True
+
+No arquivo settings ficará desta forma: 
+    DEBUG = config("DEBUG", cast=bool, default=False)
+
+
+No arquivo .env, copiar a DEBUG do settings e e colar no arquivo.env: 
+    ALLOWED_HOSTS =*
+
+No arquivo settings ficará desta forma: 
+    DEBUG = config("DEBUG", cast=bool, default=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
