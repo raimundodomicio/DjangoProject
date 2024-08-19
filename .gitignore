@@ -1,5 +1,5 @@
 # Diretório do ambiente virtual
-venv/
+venv
  
 # Arquivos gerados pelo Python
 *.pyc
