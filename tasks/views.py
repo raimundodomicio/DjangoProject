@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 # Create your views here.
-def home(request):
-    return render(request, 'task/home.html')
+
+
+def tasks_list(request):
+    return render(request, "task/tasks_list.html")

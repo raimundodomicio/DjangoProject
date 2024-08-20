@@ -111,7 +111,7 @@ python manage.py makemigrations - Cria modelos pré configurados no settings.py
 python manage.py migrate - Aplica modelos pré configurados no settings.py
 
 
-************************ SECRET_KEY  *******************************
+***************** SECRET_KEY, DEBUG, ALLOWED_HOSTS *******************************
 SECRET_KEY = 'django-insecure-ifp4k05#9!--wv39qf$t4mo*%qz$!)^c3x1r+u^6mry@w_sql$'
 
 No terminal, instalar a biblioteca decouple: 
@@ -140,6 +140,36 @@ No arquivo .env, copiar a DEBUG do settings e e colar no arquivo.env:
 
 No arquivo settings ficará desta forma: 
     DEBUG = config("DEBUG", cast=bool, default=False)
+
+No arquivo settings, em DATABASES que estará desta forma:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+No terminal instalar dj-databases-url
+    pip install dj-databases-url
+
+No arquivo settings ficará desta forma: 
+    DATABASES = {
+    'default': config(
+        "DATABASE_URL",
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        cast=db_url)
+} 
+
+*********** Formatando e aplicando as boas práticas no código python - black **************
+pip install black
+Para formatar use o comando: black .
+
+*********** Wiews e Templates **************
+
+
+
+
+
 
 
 
