@@ -69,7 +69,7 @@ urlpatterns = [
 
 ***************************** Criando a camada de templates **********************************
 
-tasks -> (criar diretório) templates -> (criar diretório) tasks
+tasks -> (criar diretório) templates -> (criar arquivo) tasks
 home.html
 
 Volta na views e:
@@ -165,6 +165,29 @@ pip install black
 Para formatar use o comando: black .
 
 *********** Wiews e Templates **************
+Algumas configurações: Instalar o plugin Django
+NO settings.json acrescentar o seguinte comando:
+    "emmet.includeLanguages":{"django-html": "html"},
+
+Criando uma views
+tasks -> views ->
+
+def tasks_list(request):
+    return render(request, "task/tasks_list.html")
+
+Criando uma rota
+setup -> urls.py ->
+Primeiro importar a views:
+    from tasks.views import tasks_list
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    -> path('', tasks_list),
+]
+
+
+  
 
 
 

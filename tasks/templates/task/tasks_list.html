@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>Olá Mundo Django!!</h1>
-</body>
+  </head>
+  <body>
+    <h1>Lista de tarefas</h1>
+    <ul>
+      {% for task in task %}
+      <li>{{task}}</li>
+      {% endfor %}
+    </ul>
+  </body>
 </html>
