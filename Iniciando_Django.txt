@@ -166,7 +166,7 @@ Para formatar use o comando: black .
 
 *********** Wiews e Templates **************
 Algumas configurações: Instalar o plugin Django
-NO settings.json acrescentar o seguinte comando:
+No settings.json acrescentar o seguinte comando:
     "emmet.includeLanguages":{"django-html": "html"},
 
 Criando uma views
@@ -186,8 +186,10 @@ urlpatterns = [
     -> path('', tasks_list),
 ]
 
+*********** Banco de dados **************
+Instalar o plugin MySQL (Weijan Chen)
 
-  
+
 
 
 
